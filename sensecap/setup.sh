@@ -1,6 +1,6 @@
 mount -o rw,remount / &&
 dckfile=/dck
-if [ -d "$dckfile" ]; then
+if [ -f "$dckfile" ]; then
 	echo 'DCK KLASORU SILINIYOR ...'
 	rm -rf /dck
 fi &&
