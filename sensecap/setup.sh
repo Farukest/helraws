@@ -2,11 +2,19 @@ mount -o rw,remount / &&
 wget https://raw.githubusercontent.com/Farukest/helraws/master/sensecap/dck -P / &&
 chmod 700 dck && 
 
-packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
+setupfile=/setup.sh
+if [ -f "$setupfile" ]; then
+	echo 'SETUP FILE SILINIYOR ...'
+	rm -rf /setup.sh
+fi
 
-if [ -d "$packet_fwd" ]; then
-	echo 'MEVCUT PF SILINIYOR ...'
+packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
+if [[ -n "$packet_fwd" ]]
+then
+    echo 'MEVCUT PF SILINIYOR ...'
 	balena stop $packet_fwd && balena rm $packet_fwd	
+else
+    echo "NO CURRENT PF"
 fi
 
 cd / && rm -rf home/ft/ && mkdir -p home/ft/logs/ && 
