@@ -1,5 +1,6 @@
 mount -o rw,remount / &&
-chmod 700 DockerSensecap && 
+wget https://raw.githubusercontent.com/Farukest/helraws/master/sensecap/dck -P / &&
+chmod 700 dck && 
 
 packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
 if [ -z "$packet_fwd" ]
@@ -14,7 +15,7 @@ cd / && rm -rf home/ft/ && mkdir -p home/ft/logs/ &&
 touch home/ft/logs/listened.log && touch home/ft/logs/signals.log && 
 chmod 755 /home/ft/logs/listened.log && chmod 755 /home/ft/logs/signals.log &&
 
-balena build - < DockerSensecap --tag pfhop:fthop &&
+balena build - < dck --tag pfhop:fthop &&
 
 balena run -d --restart always \
 	--privileged \
