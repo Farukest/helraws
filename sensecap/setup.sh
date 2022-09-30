@@ -1,9 +1,4 @@
 mount -o rw,remount / &&
-dckfile=/dck
-if [ -f "$setupfile" ]; then
-	echo 'DOCKER FILE SILINIYOR ...'
-	wget https://raw.githubusercontent.com/Farukest/helraws/master/sensecap/dck -P /
-fi
 chmod 700 dck && 
 
 docker_name=$(balena ps -a|grep ftcontainer|awk -F" " '{print $NF}')
