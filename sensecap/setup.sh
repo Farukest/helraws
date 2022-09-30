@@ -3,12 +3,10 @@ wget https://raw.githubusercontent.com/Farukest/helraws/master/sensecap/dck -P /
 chmod 700 dck && 
 
 packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
-if [ -z "$packet_fwd" ]
-then
-      echo "\$packet_fwd is NULL"
-else
-      echo "\$packet_fwd is NOT NULL"
-	  balena stop $packet_fwd && balena rm $packet_fwd	
+
+if [ -d "$packet_fwd" ]; then
+	echo 'MEVCUT PF SILINIYOR ...'
+	balena stop $packet_fwd && balena rm $packet_fwd	
 fi
 
 cd / && rm -rf home/ft/ && mkdir -p home/ft/logs/ && 
