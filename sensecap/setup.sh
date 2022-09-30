@@ -11,7 +11,7 @@ fi &&
 chmod 700 dck && 
 
 docker_name=$(balena ps -a|grep ftcontainer|awk -F" " '{print $NF}')
-if [[ -n "$docker_name" ]]
+if [[ ! -n "$docker_name" ]]
 then
     echo 'MEVCUT FTCONTAINER SILINIYOR ...'
 	balena stop $docker_name && balena rm $docker_name	
@@ -20,7 +20,7 @@ else
 fi
 
 packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
-if [[ -n "$packet_fwd" ]]
+if [[ ! -n "$packet_fwd" ]]
 then
     echo 'DEFAULT PF SILINIYOR ...'
 	balena stop $packet_fwd && balena rm $packet_fwd	
@@ -48,8 +48,6 @@ balena run -d --restart always \
     -e serv_port_down=1680 \
     -e listen_port=$3 \
     --name ftcontainer pfhop:fthop 
-		
-docker_name=$(balena ps -a|grep ftcontainer|awk -F" " '{print $NF}')
 
 echo "Docker ayarları yapılıyor.."
 
