@@ -16,16 +16,16 @@ then
     echo 'MEVCUT FTCONTAINER SILINIYOR ...'
 	balena stop $docker_name && balena rm $docker_name	
 else
-    echo "NO CURRENT FTCONTAINER"
+    echo "NO FTCONTAINER"
 fi
 
 packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
 if [[ -n "$packet_fwd" ]]
 then
-    echo 'MEVCUT PF SILINIYOR ...'
+    echo 'DEFAULT PF SILINIYOR ...'
 	balena stop $packet_fwd && balena rm $packet_fwd	
 else
-    echo "NO CURRENT PF"
+    echo "NO DEFAULT PF"
 fi
 
 # cd / && rm -rf home/ft/ && mkdir -p home/ft/logs/ && 
