@@ -1,9 +1,13 @@
 mount -o rw,remount / &&
 dckfile=/dck
-if [ ! -f "$dckfile" ]; then
+if [[ ! -f "$dckfile" ]]
+then
 	echo 'DOCKER FILE SILINIYOR ...'
+	rm -rf /dck
+else
+	echo 'DOCKER FILE YOK ...'
 	wget https://raw.githubusercontent.com/Farukest/helraws/master/sensecap/dck -P /
-fi
+fi &&
 chmod 700 dck && 
 
 docker_name=$(balena ps -a|grep ftcontainer|awk -F" " '{print $NF}')
