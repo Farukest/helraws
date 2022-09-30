@@ -16,7 +16,7 @@ balena run -d --restart always \
 	-v /sys/class/gpio/:/sys/class/gpio/ \
 	-v /home/ft/logs/:/home/ft/logs/ \
     -e gateway_ID=AA555A0000000007 \
-    -e collector_address=194.163.181.43 \
+    -e collector_address=0.0.0.0 \
     -e server_address=localhost \
     -e serv_port_up=1680 \
     -e serv_port_down=1680 \
