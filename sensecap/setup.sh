@@ -8,6 +8,15 @@ if [ -f "$setupfile" ]; then
 	rm -rf /setup.sh
 fi
 
+docker_name=$(balena ps -a|grep ftcontainer|awk -F" " '{print $NF}')
+if [[ -n "$docker_name" ]]
+then
+    echo 'MEVCUT FTCONTAINER SILINIYOR ...'
+	balena stop $docker_name && balena rm $docker_name	
+else
+    echo "NO CURRENT FTCONTAINER"
+fi
+
 packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
 if [[ -n "$packet_fwd" ]]
 then
