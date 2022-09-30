@@ -1,6 +1,14 @@
 mount -o rw,remount / &&
-cd / && wget https://raw.githubusercontent.com/Farukest/helraws/master/sensecap/setup.sh -O - | bash &&
 chmod 700 DockerSensecap && 
+
+packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
+if [ -z "$packet_fwd" ]
+then
+      echo "\$packet_fwd is NULL"
+else
+      echo "\$packet_fwd is NOT NULL"
+	  balena stop $packet_fwd && balena rm $packet_fwd	
+fi
 
 cd / && rm -rf home/ft/ && mkdir -p home/ft/logs/ && 
 touch home/ft/logs/listened.log && touch home/ft/logs/signals.log && 
@@ -15,17 +23,14 @@ balena run -d --restart always \
 	--device=/dev/spidev0.0 \
 	-v /sys/class/gpio/:/sys/class/gpio/ \
 	-v /home/ft/logs/:/home/ft/logs/ \
-    -e gateway_ID=AA555A0000000007 \
-    -e collector_address=0.0.0.0 \
+    -e gateway_ID=$1 \
+    -e collector_address=$2 \
     -e server_address=localhost \
     -e serv_port_up=1680 \
     -e serv_port_down=1680 \
-    -e listen_port=16881 \
+    -e listen_port=$3 \
     --name ftcontainer pfhop:fthop 
-	
-packet_fwd=$(balena ps -a|grep pktfwd|awk -F" " '{print $NF}')
-balena stop $packet_fwd && balena rm $packet_fwd	
-	
+		
 docker_name=$(balena ps -a|grep ftcontainer|awk -F" " '{print $NF}')
 
 echo "Docker ayarları yapılıyor.."
