@@ -15,7 +15,7 @@ if id -nG admin; then
   wget https://github.com/Farukest/helraws/blob/master/pisces/forsense/latest.tar -O /tmp/latest.tar
   cd /tmp
   if test -f latest.tar; then
-    tar -xzf latest.tar
+    tar -xvf latest.tar
     cd dashboardinstall
     systemctl stop pm2-pi.service
     systemctl disable pm2-pi.service
