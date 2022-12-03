@@ -1,0 +1,5 @@
+[Unit]
+Description=VPN checker
+
+[Service]
+ExecStart=/etc/monitor-scripts/vpn.sh
