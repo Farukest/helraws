@@ -29,9 +29,9 @@ sleep 1
 # gateway_ID Example
 # AA555A0000000001
 
-echo $1
-echo $2
-echo $3
+echo "gateway_ID : " $1
+echo "collector_address : " $2
+echo "listen_port : " $3
 
 gateway_ID=$1
 collector_address=$2
@@ -41,6 +41,10 @@ listen_port=$3
 echo $gateway_ID
 echo $collector_address
 echo $listen_port
+
+echo "gateway_ID : " $gateway_ID
+echo "collector_address : " $collector_address
+echo "listen_port : " $listen_port
 
 
 
