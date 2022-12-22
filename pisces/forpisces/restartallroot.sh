@@ -38,9 +38,10 @@ collector_address=$2
 listen_port=$3
 
 
+echo $gateway_ID
 echo $collector_address
 echo $listen_port
-echo $gateway_ID
+
 
 
 chmod 777 /home/ft/hs_ft_pf_conf.json
