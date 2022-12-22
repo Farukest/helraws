@@ -33,9 +33,10 @@ echo $1
 echo $2
 echo $3
 
-collector_address=$2
-listen_port=$2
 gateway_ID=$1
+collector_address=$2
+listen_port=$3
+
 
 echo $collector_address
 echo $listen_port
