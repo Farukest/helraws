@@ -1,0 +1,18 @@
+client
+dev tun
+remote :hostname :port
+proto :type
+nobind
+persist-key
+persist-tun
+cipher AES-256-CBC
+comp-lzo
+verb 1
+mute 20
+float
+route-method exe
+route-delay 2
+auth-user-pass auth.txt
+auth-retry interact
+ifconfig-nowarn
+auth-nocache
