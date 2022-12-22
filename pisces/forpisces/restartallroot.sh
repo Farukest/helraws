@@ -29,9 +29,9 @@ sleep 1
 # gateway_ID Example
 # AA555A0000000001
 
-collector_address=
-listen_port=16881
-gateway_ID=""
+collector_address=$2
+listen_port=$3
+gateway_ID=$1
 
 chmod 777 /home/ft/hs_ft_pf_conf.json
 sed -i 's/replace_collector_address/'"${collector_address}"'/g' /home/ft/hs_ft_pf_conf.json
